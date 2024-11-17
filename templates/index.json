@@ -1,14 +1,23 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero_banner": {
       "type": "hero-banner",
       "settings": {
-        "image": "shopify:\/\/shop_images\/hero-banner",
-        "heading": "Fresh, Organic Juices",
+        "image": "shopify://shop_images/mg2qi-uwgvn.jpg",
+        "heading": "",
         "heading_size": "h1",
-        "subheading": "<p>Cold-pressed daily for maximum nutrition and vitality</p>",
-        "button_label": "Shop Now",
-        "button_link": "\/collections\/all",
+        "subheading": "",
+        "button_label": "",
+        "button_link": "/collections/all",
         "button_style": "primary",
         "text_alignment": "center",
         "full_width": true,
@@ -23,6 +32,7 @@
         "heading_size": "h2",
         "description": "<p>Browse our latest cold-pressed juices</p>",
         "show_description": true,
+        "description_style": "body",
         "collection": "all",
         "products_to_show": 4,
         "columns_desktop": 4,
@@ -32,10 +42,11 @@
         "enable_desktop_slider": false,
         "color_scheme": "background-1",
         "image_ratio": "adapt",
+        "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
-        "enable_quick_add": true,
+        "quick_add": "none",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 44,
