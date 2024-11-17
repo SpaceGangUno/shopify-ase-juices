@@ -1,0 +1,12 @@
+{
+  "general": {
+    "search": {
+      "placeholder": "Search our store..."
+    },
+    "404": {
+      "title": "404 - Page Not Found",
+      "subtext": "The page you're looking for has moved or no longer exists.",
+      "button_label": "Back to Homepage"
+    }
+  }
+}

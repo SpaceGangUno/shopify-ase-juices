@@ -1,1 +1,18 @@
-{"sections":{"main":{"type":"main-404","settings":{}}},"order":["main"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/404",
+        "title": "404 - Page Not Found",
+        "subtext": "The page you're looking for has moved or no longer exists.",
+        "show_search": true,
+        "button_label": "Back to Homepage",
+        "button_link": "\/",
+        "layout": "center",
+        "text_alignment": "center"
+      }
+    }
+  },
+  "order": ["main"]
+}

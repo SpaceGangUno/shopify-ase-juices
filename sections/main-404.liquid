@@ -1,23 +1,196 @@
-<style type="text/css">
-  .template-404 .title + * {
-    margin-top: 1rem;
+{%- style -%}
+  .section-404 {
+    padding: 6rem 0;
+    text-align: {{ section.settings.text_alignment }};
   }
 
-  @media screen and (min-width: 750px) {
-    .template-404 .title + * {
-      margin-top: 2rem;
+  .section-404__content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .section-404__image {
+    max-width: 300px;
+    margin: 0 auto 2rem;
+  }
+
+  .section-404__title {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: rgb(var(--color-foreground));
+  }
+
+  .section-404__text {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: rgba(var(--color-foreground), 0.75);
+  }
+
+  .section-404__search {
+    margin-bottom: 2rem;
+  }
+
+  .section-404__search-form {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .section-404__search-input {
+    width: 100%;
+    padding: 1rem 3rem 1rem 1rem;
+    border: 1px solid rgba(var(--color-foreground), 0.1);
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  .section-404__search-button {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .section-404__search-button svg {
+    width: 20px;
+    height: 20px;
+    color: rgba(var(--color-foreground), 0.75);
+  }
+
+  .section-404__button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .section-404__button:hover {
+    opacity: 0.9;
+  }
+
+  @media screen and (max-width: 749px) {
+    .section-404 {
+      padding: 4rem 0;
+    }
+
+    .section-404__title {
+      font-size: 2rem;
     }
   }
-</style>
+{%- endstyle -%}
 
-<div class="template-404 page-width page-margin center">
-  <p>
-    {{ 'templates.404.subtext' | t }}
-  </p>
-  <h1 class="title">
-    {{ 'templates.404.title' | t }}
-  </h1>
-  <a href="{{ routes.all_products_collection_url }}" class="button">
-    {{ 'general.continue_shopping' | t }}
-  </a>
+<div class="section-404 page-width">
+  <div class="section-404__content">
+    {% if section.settings.image != blank %}
+      <div class="section-404__image">
+        {{ section.settings.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: section.settings.title }}
+      </div>
+    {% endif %}
+
+    <h1 class="section-404__title">
+      {{ section.settings.title | escape }}
+    </h1>
+
+    <div class="section-404__text">
+      {{ section.settings.subtext | escape }}
+    </div>
+
+    {% if section.settings.show_search %}
+      <div class="section-404__search">
+        <form action="{{ routes.search_url }}" method="get" class="section-404__search-form">
+          <input
+            type="search"
+            name="q"
+            placeholder="{{ 'general.search.placeholder' | t }}"
+            class="section-404__search-input"
+            required
+          >
+          <button type="submit" class="section-404__search-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    {% endif %}
+
+    {% if section.settings.button_label != blank %}
+      <a href="{{ section.settings.button_link }}" class="section-404__button">
+        {{ section.settings.button_label | escape }}
+      </a>
+    {% endif %}
+  </div>
 </div>
+
+{% schema %}
+{
+  "name": "404 Page Not Found",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "404 Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "404 - Page Not Found"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Text",
+      "default": "The page you're looking for has moved or no longer exists."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search form",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Back to Homepage"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "\/"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    }
+  ]
+}
+{% endschema %}
