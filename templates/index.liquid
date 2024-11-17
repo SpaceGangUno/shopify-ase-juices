@@ -1,0 +1,83 @@
+{{ 'custom-styles.css' | asset_url | stylesheet_tag }}
+
+{%- section 'hero-banner' -%}
+
+{%- section 'featured-collection' -%}
+
+<div class="page-width">
+  <div class="benefits-preview">
+    <h2>Why Choose Asé Juices?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">🌿</div>
+        <h3>100% Organic</h3>
+        <p>All our ingredients are certified organic and locally sourced when possible.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">⚡</div>
+        <h3>Natural Energy</h3>
+        <p>Experience sustained energy without crashes or artificial stimulants.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🔄</div>
+        <h3>Fresh Pressed Daily</h3>
+        <p>Every bottle is pressed fresh daily to ensure maximum nutrition and taste.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+.benefits-preview {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.benefits-preview h2 {
+  color: var(--color-primary);
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.benefit-card {
+  padding: 2rem;
+  background: var(--color-light-bg);
+  border-radius: var(--border-radius);
+  transition: var(--transition-default);
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+}
+
+.benefit-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.benefit-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.benefit-card p {
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 749px) {
+  .benefits-preview {
+    padding: 2rem 0;
+  }
+
+  .benefits-preview h2 {
+    font-size: 2rem;
+  }
+}
+{% endstylesheet %}

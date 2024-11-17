@@ -1,0 +1,57 @@
+<div class="page-width page-width--narrow">
+  <h1 class="main-page-title page-title h0">
+    {{ page.title }}
+  </h1>
+  <div class="rte">
+    <div class="benefits-stats">
+      <div class="benefit-stat">
+        <h2>92%</h2>
+        <p>Customer Satisfaction</p>
+      </div>
+      <div class="benefit-stat">
+        <h2>30+</h2>
+        <p>Natural Ingredients</p>
+      </div>
+      <div class="benefit-stat">
+        <h2>24hrs</h2>
+        <p>Fresh Pressed</p>
+      </div>
+      <div class="benefit-stat">
+        <h2>100%</h2>
+        <p>Organic Produce</p>
+      </div>
+    </div>
+    <div class="benefits-content">
+      <h2>Transform Your Life, One Sip at a Time</h2>
+      <p>Experience the power of nature's finest ingredients, carefully crafted to enhance your wellbeing and vitality.</p>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+.benefits-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.benefit-stat h2 {
+  color: #00A651;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.benefits-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.benefits-content h2 {
+  color: #00A651;
+  margin-bottom: 1rem;
+}
+{% endstylesheet %}

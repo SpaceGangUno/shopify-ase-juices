@@ -1,0 +1,192 @@
+<div class="page-width page-width--narrow">
+  <div class="client-portal">
+    <div class="portal-container">
+      <h1>Welcome Back</h1>
+      
+      {%- form 'customer_login' -%}
+        {%- if form.errors -%}
+          <div class="form__message" tabindex="-1" autofocus>
+            <h2>
+              <svg aria-hidden="true" focusable="false" role="presentation">
+                <use href="#icon-error" />
+              </svg>
+              {{ 'templates.contact.form.error_heading' | t }}
+            </h2>
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="field">
+          <input
+            type="email"
+            name="customer[email]"
+            id="CustomerEmail"
+            autocomplete="email"
+            autocorrect="off"
+            autocapitalize="off"
+            placeholder="Email"
+            class="field__input"
+          >
+          <label class="field__label" for="CustomerEmail">
+            {{ 'customer.login_page.email' | t }}
+          </label>
+        </div>
+
+        <div class="field">
+          <input
+            type="password"
+            name="customer[password]"
+            id="CustomerPassword"
+            autocomplete="current-password"
+            placeholder="Password"
+            class="field__input"
+          >
+          <label class="field__label" for="CustomerPassword">
+            {{ 'customer.login_page.password' | t }}
+          </label>
+        </div>
+
+        <a href="{{ routes.account_recover_url }}" class="forgot-password">
+          {{ 'customer.login_page.forgot_password' | t }}
+        </a>
+
+        <button class="button button--primary">
+          {{ 'customer.login_page.sign_in' | t }}
+        </button>
+
+        <div class="portal-separator">
+          <span>Or continue with</span>
+        </div>
+
+        <button type="button" class="button button--secondary google-signin">
+          <img src="{{ 'icon-google.png' | asset_url }}" alt="Google logo">
+          Continue with Google
+        </button>
+
+        <div class="signup-prompt">
+          <p>Don't have an account? <a href="{{ routes.account_register_url }}">Sign up</a></p>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+.client-portal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  background: #f9f9f9;
+}
+
+.portal-container {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.portal-container h1 {
+  text-align: center;
+  color: #1A1A1A;
+  margin-bottom: 2rem;
+}
+
+.field {
+  margin-bottom: 1.5rem;
+}
+
+.field__input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.field__label {
+  display: none;
+}
+
+.forgot-password {
+  display: block;
+  text-align: right;
+  color: #00A651;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.button--primary {
+  background: #00A651;
+  color: white;
+}
+
+.button--secondary {
+  background: white;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.portal-separator {
+  text-align: center;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.portal-separator::before,
+.portal-separator::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background: #e0e0e0;
+}
+
+.portal-separator::before {
+  left: 0;
+}
+
+.portal-separator::after {
+  right: 0;
+}
+
+.portal-separator span {
+  background: white;
+  padding: 0 10px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.signup-prompt {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.signup-prompt a {
+  color: #00A651;
+  text-decoration: none;
+}
+
+.form__message {
+  color: #dc3545;
+  margin-bottom: 1rem;
+}
+{% endstylesheet %}

@@ -1,0 +1,140 @@
+<style>
+  .header {
+    padding: 1rem 3rem;
+    background: white;
+  }
+
+  .header__menu-item {
+    color: #1A1A1A;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .header__menu-item:hover {
+    color: #00A651;
+  }
+
+  .header__active-menu-item {
+    color: #00A651;
+  }
+
+  .client-portal-button {
+    background: #00A651;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .client-portal-button:hover {
+    background: #008f45;
+    color: white;
+  }
+
+  .header__icon--cart .svg-wrapper svg {
+    fill: #1A1A1A;
+  }
+
+  .cart-count-bubble {
+    background: #00A651;
+  }
+</style>
+
+{%- liquid
+  assign main_menu_links = linklists[section.settings.menu].links
+  assign has_dropdown = false
+  for link in main_menu_links
+    if link.links != blank
+      assign has_dropdown = true
+      break
+    endif
+  endfor
+-%}
+
+<div class="header-wrapper">
+  <header class="header page-width">
+    <div class="header__logo">
+      <a href="{{ routes.root_url }}" class="header__heading-link">
+        {%- if settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 150 | image_tag:
+            class: 'header__heading-logo',
+            widths: '50, 100, 150, 200',
+            height: settings.logo_width | divided_by: settings.logo.aspect_ratio,
+            width: settings.logo_width,
+            alt: settings.logo.alt | default: shop.name | escape
+          }}
+        {%- else -%}
+          <span class="h2">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+    </div>
+
+    <nav class="header__inline-menu">
+      <ul class="list-menu list-menu--inline" role="list">
+        <li><a href="/pages/benefits" class="header__menu-item list-menu__item link focus-inset">Benefits</a></li>
+        <li><a href="/collections/all" class="header__menu-item list-menu__item link focus-inset">Products</a></li>
+        <li><a href="/pages/process" class="header__menu-item list-menu__item link focus-inset">Our Process</a></li>
+        <li><a href="/pages/portal" class="header__menu-item list-menu__item link focus-inset client-portal-button">Client Portal</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__icons">
+      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+        {%- if cart == empty -%}
+          <span class="svg-wrapper">{% render 'icon-cart-empty' %}</span>
+        {%- else -%}
+          <span class="svg-wrapper">{% render 'icon-cart' %}</span>
+          <div class="cart-count-bubble">
+            {%- if cart.item_count < 100 -%}
+              <span aria-hidden="true">{{ cart.item_count }}</span>
+            {%- endif -%}
+            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+          </div>
+        {%- endif -%}
+        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+      </a>
+    </div>
+  </header>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "select",
+      "id": "logo_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "left",
+      "label": "Logo position"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 250,
+      "step": 10,
+      "default": 100,
+      "unit": "px",
+      "label": "Logo width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}
